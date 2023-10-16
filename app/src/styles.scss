@@ -22,6 +22,14 @@ body {
   color: #333;
 }
 
+header {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 a {
   color: var(--primary-color);
   cursor: pointer;
@@ -42,7 +50,7 @@ img {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1440px;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -219,6 +227,10 @@ textarea {
   border: 1px solid #ccc;
 }
 
+input.ng-invalid.ng-touched {
+  border: 1px solid var(--danger-color);
+}
+
 input[type='submit'],
 button {
   font: inherit;
@@ -249,8 +261,8 @@ table th {
   padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
+  max-width: 1440px;
   opacity: 0.9;
-  margin-bottom: 1rem;
   height: 3rem;
 
   &.main {
