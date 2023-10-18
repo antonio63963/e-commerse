@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 interface User {
   email: string;
   password: string;
+  returnSecureToken: boolean;
 }
 
 @Component({
@@ -34,7 +35,8 @@ export class LoginPageComponent implements OnInit {
 
     const user: User = {
       email: this.form?.value.email,
-      password: this.form?.value.password
+      password: this.form?.value.password,
+      returnSecureToken: true
     };
     this.auth.login(user).subscribe({
      next: (resp) => {
@@ -45,7 +47,7 @@ export class LoginPageComponent implements OnInit {
      error: (err) => {
       this.submitted = false;
      },
-     complete: () => {}
+    //  complete: () => {}
     });
   }
 
