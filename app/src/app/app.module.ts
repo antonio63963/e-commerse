@@ -9,6 +9,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { AdminLayoutComponent } from './admin/shared/admin-layout/admin-layout.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    QuillModule
   ],
   providers: [],
   bootstrap: [AppComponent]
