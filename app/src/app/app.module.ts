@@ -10,6 +10,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { AdminLayoutComponent } from './admin/shared/admin-layout/admin-layout.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
+import { AUTH_INTERCEPTOR, AuthInterceptor } from './shared/interceptors/auth-admin.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { QuillModule } from 'ngx-quill';
     HttpClientModule,
     QuillModule
   ],
-  providers: [],
+  providers: [AUTH_INTERCEPTOR],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,7 +33,7 @@
     </div>
     <!-- photo -->
     <div class="form-control">
-      <label for="type">Photo</label>
+      <label for="type"><p>Photo</p></label>
       <quill-editor formControlName="photo"></quill-editor>
       <div
         *ngIf="form.get('type')?.touched && form.get('type')?.invalid"
@@ -46,7 +46,7 @@
     </div>
     <!-- info -->
     <div class="form-control">
-      <label for="info">Information</label>
+      <label for="info"><p>Information</p></label>
       <quill-editor formControlName="info"></quill-editor>
       <div
         *ngIf="form.get('info')?.touched && form.get('info')?.invalid"
@@ -76,7 +76,7 @@
       class="btn btn-primary btn-block"
       [disabled]="form.invalid || submitted"
     >
-      Submit
+      Add
     </button>
   </form>
 </div>
