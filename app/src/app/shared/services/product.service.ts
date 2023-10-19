@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { FbAddResponse, IProduct } from '../interfaces';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,19 @@ export class ProductService {
           id: response.name,
           date: new Date(response.date),
         };
+      })
+    );
+  }
+
+  getAll(): Observable<IProduct[]> {
+    return this.http.get(`${environment.fbDbUrl}/products.json`)
+    .pipe(
+      map((res: { [x: string]: any }) => {
+        return Object.keys(res).map((key) => ({
+          ...res[key],
+          id: key,
+          dateCreated: new Date(res[key].dateCreated),
+        }));
       })
     );
   }

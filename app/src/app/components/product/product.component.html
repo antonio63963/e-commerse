@@ -1,0 +1,10 @@
+<div class="text-center">
+  <h2>{{product?.title}}</h2>
+  <div *ngIf="product && product.photo" class="product-photo">
+    <quill-view-html [content]="product.photo"></quill-view-html>
+  </div>
+  <h2>${{product?.price}}</h2>
+
+  <button [routerLink]="['/product', product?.id]" class="btn btn-dark btn-product">Open</button>
+  <button [routerLink]="['/cart']" class="btn btn-dark btn-product">Add to Cart</button>
+</div>
