@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../shared/services/product.service';
 import { IProduct } from '../../shared/interfaces';
+import { map, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',

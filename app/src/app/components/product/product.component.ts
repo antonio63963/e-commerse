@@ -12,6 +12,6 @@ export class ProductComponent implements DoCheck {
 
   ngDoCheck() {
     console.log('prod:', this.product?.id)
-  }
+  } 
 
 }

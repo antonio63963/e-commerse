@@ -23,8 +23,7 @@ export class ProductService {
   }
 
   getAll(): Observable<IProduct[]> {
-    return this.http.get(`${environment.fbDbUrl}/products.json`)
-    .pipe(
+    return this.http.get(`${environment.fbDbUrl}/products.json`).pipe(
       map((res: { [x: string]: any }) => {
         return Object.keys(res).map((key) => ({
           ...res[key],
@@ -33,5 +32,30 @@ export class ProductService {
         }));
       })
     );
+  }
+
+  getById(id: string): Observable<IProduct>{
+    return this.http.get(`${environment.fbDbUrl}/products/${id}.json`)
+    .pipe(
+      map((res: { [x: string]: any }) => ({
+        ...res,
+        id,
+        dateCreated: new Date(res['dateCreated']),
+      } as IProduct))
+    );
+  }
+  update(product: any): Observable<IProduct>{
+    return this.http.put(`${environment.fbDbUrl}/products/${product.id}.json`, product)
+    .pipe(
+      map((res: { [x: string]: any }) => ({
+        ...res,
+        id: product.id,
+        dateCreated: new Date(res['dateCreated']),
+      } as IProduct))
+    );
+  }
+
+  deleteById(id:string) {
+    return this.http.delete(`${environment.fbDbUrl}/products/${id}.json`);
   }
 }
