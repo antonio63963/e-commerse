@@ -13,6 +13,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class EditPageComponent implements OnInit {
   product?: IProduct;
   form?: FormGroup;
+  errorMessage: string | null = null;
 
   t = 'some title';
 
@@ -55,6 +56,8 @@ export class EditPageComponent implements OnInit {
       this.productService.update(newProduct).subscribe((res) => {
         this.router.navigate(['/admin', 'dashboard']);
       });
+    }else {
+      this.errorMessage = 'The product is the same!'
     }
   }
 }

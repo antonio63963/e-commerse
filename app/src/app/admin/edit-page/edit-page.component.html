@@ -5,6 +5,7 @@
   [product]="product"
   (onForm)="getForm($event)"
   (onSubmit)="onFormSubmit($event)"
+  [errorMessage]="errorMessage"
 ></app-product-form>
 <ng-template #loading>
   <app-loading></app-loading>

@@ -22,6 +22,7 @@ export class ProductFormComponent {
   @Input() submitButtonText?: string = 'Add';
   @Input() formTitle?: string = 'Add New Product';
   @Input() product?: IProductForm;
+  @Input() errorMessage: string | null = null;
 
   submitted: boolean = false;
   form?: FormGroup;
