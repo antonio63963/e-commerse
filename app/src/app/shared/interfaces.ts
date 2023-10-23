@@ -1,11 +1,14 @@
-interface IProduct {
+interface IProduct extends IProductForm {
   id?: string;
+  dateCreated: Date;
+}
+
+interface IProductForm {
   type: string;
   title: string;
   photo: string;
   info: string;
   price: number;
-  dateCreated: Date;
 }
 
 interface FbAddResponse {
@@ -13,4 +16,4 @@ interface FbAddResponse {
   date: string;
 }
 
-export { IProduct, FbAddResponse };
+export { IProduct, FbAddResponse, IProductForm };

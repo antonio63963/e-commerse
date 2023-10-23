@@ -4,6 +4,7 @@
 :root {
   --primary-color: #212121;
   --dark-color: #263238;
+  --gray-color: #696969;
   --light-color: #FAFAFA;
   --danger-color: #D32F2F;
   --success-color: #00897B;
@@ -249,7 +250,7 @@ table td {
 }
 
 table th {
-  background: var(--primary-color);
+  background: var(--gray-color);
   color: white;
   height: 1rem;
   padding: 0.5rem;

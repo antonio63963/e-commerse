@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IProductForm } from 'src/app/shared/interfaces';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -8,36 +9,22 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './add-page.component.html',
   styleUrls: ['./add-page.component.scss'],
 })
-export class AddPageComponent implements OnInit {
-  submitted: boolean = false;
+export class AddPageComponent {
   form?: FormGroup;
 
   constructor(private productService: ProductService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      type: new FormControl(null, [Validators.required]),
-      title: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      photo: new FormControl(null, [Validators.required]),
-      info: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
-      price: new FormControl(null, [Validators.required, Validators.min(1)]),
-    });
+  getForm(form: FormGroup) {
+    console.log(form)
+    console.log('wowo')
+    this.form = form;
   }
-  submit() {
-    if(this.form?.invalid) return;
+  
+  onFormSubmit(productForm: IProductForm) {
+
 
     const product ={
-      type: this.form?.value.type,
-      title: this.form?.value.title,
-      photo: this.form?.value.photo,
-      info: this.form?.value.info,
-      price: this.form?.value.price,
+      ...productForm,
       dateCreated: new Date()
     };
     this.productService.create(product).subscribe({

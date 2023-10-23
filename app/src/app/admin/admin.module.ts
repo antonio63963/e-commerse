@@ -10,13 +10,18 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authGuard } from './shared/auth.guard';
 import { QuillModule } from 'ngx-quill';
+import { Compontents } from '../shared/components/components.module';
+import { LoadingComponent } from '../shared/components/loading/loading.component';
+import { ProductFormComponent } from './shared/components/product-form/product-form.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    QuillModule.forRoot(),
+    LoadingComponent,
+    ProductFormComponent,
     RouterModule.forChild([
       {
         path: '',
@@ -40,6 +45,7 @@ import { QuillModule } from 'ngx-quill';
     DashboardPageComponent,
     EditPageComponent,
     OrdersPageComponent,
+
   ],
 })
 export class AppModule {}

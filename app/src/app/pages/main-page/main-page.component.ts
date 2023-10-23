@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../shared/services/product.service';
 import { IProduct } from '../../shared/interfaces';
-import { map, of, switchMap } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -9,14 +9,15 @@ import { map, of, switchMap } from 'rxjs';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  products$?: IProduct[];
+  products$?: Observable<IProduct[]>;
 
   constructor(private prodServ: ProductService) {}
 
   ngOnInit(): void {
-    this.prodServ.getAll().subscribe((res) => {
-      console.log('GET: ', res);
-      this.products$ = res;
-    });
+    this.products$ = this.prodServ.getAll()
+    // .subscribe((res) => {
+    //   console.log('GET: ', res);
+    //   this.products$ = res;
+    // });
   }
 }

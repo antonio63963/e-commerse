@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../shared/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces';
 
 @Component({
@@ -10,7 +10,7 @@ import { IProduct } from 'src/app/shared/interfaces';
   styleUrls: ['./product-page.component.scss'],
 })
 export class ProductPageComponent implements OnInit {
-  product?: IProduct;
+  product$?: Observable<IProduct>;
 
   constructor(
     private productService: ProductService,
@@ -18,8 +18,8 @@ export class ProductPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.pipe(
+   this.product$ = this.route.params.pipe(
       switchMap((params) => this.productService.getById(params['id']))
-    ).subscribe(res => this.product = res);
+    );
   }
 }

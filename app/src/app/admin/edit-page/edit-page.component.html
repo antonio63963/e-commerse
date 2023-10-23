@@ -1,1 +1,11 @@
-<p>edit-page works!</p>
+<app-product-form
+  *ngIf="product; else loading"
+  formTitle="Edit Product"
+  submitButtonText="Update"
+  [product]="product"
+  (onForm)="getForm($event)"
+  (onSubmit)="onFormSubmit($event)"
+></app-product-form>
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

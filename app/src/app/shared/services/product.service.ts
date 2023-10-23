@@ -45,7 +45,7 @@ export class ProductService {
     );
   }
   update(product: any): Observable<IProduct>{
-    return this.http.put(`${environment.fbDbUrl}/products/${product.id}.json`, product)
+    return this.http.patch(`${environment.fbDbUrl}/products/${product.id}.json`, product)
     .pipe(
       map((res: { [x: string]: any }) => ({
         ...res,
