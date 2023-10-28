@@ -32,16 +32,18 @@
   </div>
   <!-- photo -->
   <div class="form-control">
-    <label for="photo"><p>Photo</p></label>
-    <quill-editor formControlName="photo"></quill-editor>
-    <div
-      *ngIf="form.get('photo')?.touched && form.get('photo')?.invalid"
-      class="validation"
-    >
-      <small *ngIf="form.controls['photo']?.errors?.['required']"
-        >Choose product photo</small
-      >
+    <label for="input-photo" class="btn btn-dark">Photo</label>
+    <input class="hidden" id="input-photo" multiple type="file" (change)="showPhoto($event)"> 
+    <div *ngIf="multiImg.length; else placehold" class="prev-row">
+      <div class="preview-photo-wrapper"  *ngFor="let i of multiImg">
+        <img [src]="i" alt="your image" class="preview-photo">
+      </div>
     </div>
+    <ng-template #placehold>
+      <div class="preview-photo-wrapper">
+        <img src="http://placehold.it/180" alt="placehold" class="preview-photo">
+      </div>     
+    </ng-template>
   </div>
   <!-- info -->
   <div class="form-control">
