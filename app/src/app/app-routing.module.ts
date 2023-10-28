@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 const routes: Routes = [
   {
@@ -12,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '', component: MainPageComponent },
+      { path: 'products/:products', component: MainPageComponent },
       { path: 'product/:id', component: ProductPageComponent },
       { path: 'cart', component: CartPageComponent },
     ],
