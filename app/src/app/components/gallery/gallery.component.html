@@ -1,17 +1,15 @@
 <div class="gallery">
-  <div 
-  class="img-row"
-  [style.widht.%]="imgArray.length * 100" 
-  [style.margin-left.%]="count*-100"
+  <div
+    class="img-row"
+    [style.widht.%]="imgArray.length * 100"
+    [style.margin-left.%]="count * -100"
   >
-    <div 
-    class="img-row_item"
-    *ngFor="let image of imgArray"
-
-    >
+    <div class="img-row_item" *ngFor="let image of imgArray">
       <img [src]="image" alt="product" />
     </div>
   </div>
+  <button class="gallery_btn gallery_btn-left" (click)="moveBack()"><-</button>
+  <button class="gallery_btn gallery_btn-right" (click)="moveForward()">
+    ->
+  </button>
 </div>
-<button (click)="moveBack()"><-</button>
-<button (click)="moveForward()">-></button>
