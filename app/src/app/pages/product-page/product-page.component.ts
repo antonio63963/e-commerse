@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../shared/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces';
 import { FireBaseService } from 'src/app/shared/services/fire-base.service';
 
@@ -14,18 +13,30 @@ export class ProductPageComponent implements OnInit {
   product?: IProduct;
   prodSubscribe?: Subscription;
 
-  constructor(
-    private route: ActivatedRoute,
-    private fb: FireBaseService
-  ) {}
+  responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
+
+  constructor(private route: ActivatedRoute, private fb: FireBaseService) {}
 
   ngOnInit(): void {
-    this.prodSubscribe = this.route.params.pipe(
-      switchMap((params) => this.fb.getProductById(params['id']))
-    ).subscribe({
-      next: (res) => this.product = res,
-      error: (err: Error) => console.log(err)
-    });
+    this.prodSubscribe = this.route.params
+      .pipe(switchMap((params) => this.fb.getProductById(params['id'])))
+      .subscribe({
+        next: (res) => (this.product = res),
+        error: (err: Error) => console.log(err),
+      });
   }
 
   ngOnDestroy() {

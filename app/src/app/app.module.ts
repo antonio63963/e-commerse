@@ -9,12 +9,14 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AUTH_INTERCEPTOR } from './shared/interceptors/auth-admin.interceptor';
+
+import { GalleriaModule } from 'primeng/galleria';
 
 import { ProductComponent } from './components/product/product.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    MatSlideToggleModule,
     AppRoutingModule,
     HttpClientModule,
     QuillModule,
     LoadingComponent,
     BrowserAnimationsModule,
+    GalleriaModule,
+    GalleryComponent
   ],
   providers: [AUTH_INTERCEPTOR],
   bootstrap: [AppComponent],

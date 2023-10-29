@@ -1,0 +1,18 @@
+.gallery {
+  width: 500px;
+  overflow: hidden;
+  
+  .img-row {
+    display: flex;
+    align-items: center;
+    transition: all .3s ease-in-out;
+  }
+  .img-row_item {
+    width: 500px;
+    min-width: 500px;
+  }
+  .img-row_item>img {
+    object-fit: contain;
+
+  }
+}
