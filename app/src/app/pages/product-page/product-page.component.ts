@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../shared/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces';
+import { FireBaseService } from 'src/app/shared/services/fire-base.service';
 
 @Component({
   selector: 'app-product-page',
@@ -10,16 +11,24 @@ import { IProduct } from 'src/app/shared/interfaces';
   styleUrls: ['./product-page.component.scss'],
 })
 export class ProductPageComponent implements OnInit {
-  product$?: Observable<IProduct>;
+  product?: IProduct;
+  prodSubscribe?: Subscription;
 
   constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FireBaseService
   ) {}
 
   ngOnInit(): void {
-   this.product$ = this.route.params.pipe(
-      switchMap((params) => this.productService.getById(params['id']))
-    );
+    this.prodSubscribe = this.route.params.pipe(
+      switchMap((params) => this.fb.getProductById(params['id']))
+    ).subscribe({
+      next: (res) => this.product = res,
+      error: (err: Error) => console.log(err)
+    });
+  }
+
+  ngOnDestroy() {
+    this.prodSubscribe?.unsubscribe();
   }
 }

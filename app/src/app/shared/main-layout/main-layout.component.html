@@ -2,11 +2,15 @@
   <nav class="navbar">
     <h2>Online Shop</h2>
     <ul>
-      <li routerLinkActive="active"><a routerLink="">Phones</a></li>
-      <li routerLinkActive="active"><a routerLink="''">Tablet</a></li>
-      <li routerLinkActive="active"><a routerLink="''">Laptop</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/">All</a>
+      </li>
+      <li routerLinkActive="active"><a routerLink="/products/phones">Phones</a></li>
+      <li routerLinkActive="active"><a routerLink="/products/tablets">Tablet</a></li>
+      <li routerLinkActive="active"><a routerLink="/products/laptops">Laptop</a></li>
       <li routerLinkActive="active"><a routerLink="/cart">Cart</a></li>
     </ul>
+
   </nav>
 </header>
 <div class="container">

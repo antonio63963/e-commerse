@@ -33,7 +33,7 @@
   <!-- photo -->
   <div class="form-control">
     <label for="input-photo" class="btn btn-dark">Photo</label>
-    <input class="hidden" id="input-photo" multiple type="file" (change)="showPhoto($event)"> 
+    <input class="hidden" id="input-photo" multiple type="file" (change)="showPhoto($event)" formControlName="photo"> 
     <div *ngIf="multiImg.length; else placehold" class="prev-row">
       <div class="preview-photo-wrapper"  *ngFor="let i of multiImg">
         <img [src]="i" alt="your image" class="preview-photo">

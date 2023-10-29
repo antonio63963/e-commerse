@@ -6,7 +6,7 @@ interface IProduct extends IProductForm {
 interface IProductForm {
   type: string;
   title: string;
-  photo: string;
+  photo: string[];
   info: string;
   price: number;
 }
@@ -16,4 +16,20 @@ interface FbAddResponse {
   date: string;
 }
 
-export { IProduct, FbAddResponse, IProductForm };
+enum ProductsTypes {
+  phones = 'phones',
+  tablets = 'tablets',
+  laptops = 'laptops',
+}
+
+interface ImageInputEvent extends Event {
+  target: any;
+}
+
+export {
+  IProduct,
+  FbAddResponse,
+  IProductForm,
+  ProductsTypes,
+  ImageInputEvent,
+};

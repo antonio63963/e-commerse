@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
-import { IProductForm } from 'src/app/shared/interfaces';
+import { IProductForm, ImageInputEvent } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-product-form',
@@ -26,6 +26,8 @@ export class ProductFormComponent {
 
   submitted: boolean = false;
   form?: FormGroup;
+  imageSrc: string | ArrayBuffer | null = null;
+  multiImg: any[] = [];
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -34,7 +36,7 @@ export class ProductFormComponent {
         Validators.required,
         Validators.minLength(3),
       ]),
-      photo: new FormControl(this.product?.photo, [Validators.required]),
+      photo: new FormControl([], [Validators.required]),
       info: new FormControl(this.product?.info, [
         Validators.required,
         Validators.minLength(10),
@@ -48,6 +50,31 @@ export class ProductFormComponent {
     this.onForm.emit(this.form);
   }
 
+  showPhoto(event: ImageInputEvent) {
+    console.log(event);
+    const files = event.target.files;
+    if (event.target?.files && event.target?.files[0]) {
+      // const file = event.target.files[0];
+
+      // const reader = new FileReader();
+      // reader.onload = (e) => (this.imageSrc = reader.result);
+
+      // reader.readAsDataURL(file);
+
+      const numberOfFiles = files.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          console.log(e.target.result);
+          this.multiImg.push(e.target.result);
+        };
+
+        reader.readAsDataURL(files[i]);
+      }
+    }
+  }
+
   submit() {
     if (this.form?.invalid) return;
     this.submitted = true;
@@ -55,7 +82,8 @@ export class ProductFormComponent {
     const product = {
       type: this.form?.value.type,
       title: this.form?.value.title,
-      photo: this.form?.value.photo,
+      // photo: this.form?.value.photo,
+      photo: this.multiImg,
       info: this.form?.value.info,
       price: this.form?.value.price,
     };

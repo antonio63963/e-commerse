@@ -1,4 +1,4 @@
-<div *ngIf="product$ | async as product; else loading">
+<div *ngIf="product">
   <div class="productPage">
     <div class="header">
       <button class="btn btn-dark" routerLink="/">Back</button>
@@ -7,7 +7,7 @@
       <div class="item text-center">
         <h2>{{ product.title }}</h2>
         <div class="flex-center">
-          <quill-view-html [content]="product.photo"></quill-view-html>
+          <!-- <quill-view-html [content]="product.photo"></quill-view-html> -->
         </div>
         <div>
           <h2>Price: {{ product.price }}</h2>
