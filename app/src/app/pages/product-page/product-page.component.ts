@@ -13,21 +13,6 @@ export class ProductPageComponent implements OnInit {
   product?: IProduct;
   prodSubscribe?: Subscription;
 
-  responsiveOptions = [
-    {
-      breakpoint: '1024px',
-      numVisible: 5,
-    },
-    {
-      breakpoint: '768px',
-      numVisible: 3,
-    },
-    {
-      breakpoint: '560px',
-      numVisible: 1,
-    },
-  ];
-
   constructor(private route: ActivatedRoute, private fb: FireBaseService) {}
 
   ngOnInit(): void {

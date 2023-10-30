@@ -1,6 +1,6 @@
 .gallery {
-  width: 500px;
-  height: 510px;
+  max-width: 500px;
+  max-height: 510px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -11,10 +11,10 @@
     align-items: center;
     height: 100%;
     transition: all .3s ease-in-out;
+    min-width: 300%;
   }
   .img-row_item {
-    width: 500px;
-    min-width: 500px;
+    min-width: calc(100%/3);
     max-height: 100%;
     display: flex;
   }
