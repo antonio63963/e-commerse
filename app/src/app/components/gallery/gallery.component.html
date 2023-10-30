@@ -1,11 +1,12 @@
-<!-- [style.widht.%]="imgArray.length * 100" -->
 <div class="gallery">
   <div
   class="img-row"
+  [style.min-width.%]="300"
   [style.margin-left.%]="count * -100"
   >
     <div
       class="img-row_item"
+      [style.min-width.%]="100 / imgArray.length"
       *ngFor="let image of imgArray"
     >
       <img [src]="image" alt="product" />

@@ -11,8 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { AUTH_INTERCEPTOR } from './shared/interceptors/auth-admin.interceptor';
 
-import { GalleriaModule } from 'primeng/galleria';
-
 import { ProductComponent } from './components/product/product.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +32,6 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     QuillModule,
     LoadingComponent,
     BrowserAnimationsModule,
-    GalleriaModule,
     GalleryComponent
   ],
   providers: [AUTH_INTERCEPTOR],

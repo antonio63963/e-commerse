@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss']
+  styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent {
   @Input() imgArray: string[] = [];
@@ -15,12 +15,11 @@ export class GalleryComponent {
   imgRowWidth = '100%';
 
   moveForward() {
-    if(this.count == this.imgArray.length -1) return;
+    if (this.count == this.imgArray.length - 1) return;
     this.count++;
   }
   moveBack() {
-    if(this.count == 0) return;
+    if (this.count == 0) return;
     this.count--;
   }
-
 }

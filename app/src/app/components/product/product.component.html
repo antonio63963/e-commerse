@@ -1,12 +1,11 @@
 <div class="product-card" [routerLink]="['/product', product?.id]">
   <div *ngIf="product && product.photo" class="product-photo">
-    <img [src]="product.photo[0]">
+    <img [src]="product.photo[0]" />
   </div>
 
-    <div class="title-wrap">
-      <p class="card-title">{{product?.title}}</p>
-    </div>
+  <div class="title-wrap">
+    <p class="card-title">{{ product?.title }}</p>
+  </div>
 
-  <span class="price">${{product?.price}}</span>
-  <!-- <button [routerLink]="['/cart']" class="btn btn-dark btn-product">Add to Cart</button> -->
+  <span class="price">${{ product?.price }}</span>
 </div>
