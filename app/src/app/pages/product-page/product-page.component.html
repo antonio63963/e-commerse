@@ -1,8 +1,5 @@
-<div *ngIf="product">
+<div *ngIf="product; else loading">
   <div class="productPage">
-    <!-- <div class="header">
-      <button class="btn btn-dark" routerLink="/">Back</button>
-    </div> -->
     <div class="flex">
       <div class="item">
         <app-gallery [imgArray]="product.photo"></app-gallery>
@@ -10,16 +7,21 @@
       <div class="item between">
         <div>
           <h2 class="mx-16">{{ product.title }}</h2>
-          <quill-view-html class="flex" [content]="product.info"></quill-view-html>
+          <quill-view-html
+            class="flex"
+            [content]="product.info"
+          ></quill-view-html>
         </div>
         <div class="mx-16">
           <h2>Price: ${{ product.price }}</h2>
-          <button class="btn btn-dark" (click)="addToCart()" routerLink="/cart">Add to cart</button>
+          <button class="btn btn-dark" (click)="addToCart()" routerLink="/cart">
+            Add to cart
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 <ng-template #loading>
-  <h1>Loading...</h1>
+  <app-loading></app-loading>
 </ng-template>
