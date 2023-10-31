@@ -13,8 +13,27 @@ export class CartPageComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
+  getCartProducts() {
     this.products = this.cartService.getOrder();
-    this.totalSumm = this.products.reduce((acc, prod) => (acc += prod.summ), 0);
+    this.totalSumm = this.products.length
+      ? this.products.reduce((acc, prod) => (acc += prod.summ), 0)
+      : 0;
+  }
+
+  ngOnInit(): void {
+    this.getCartProducts();
+  }
+
+  addProduct(id: string) {
+    this.cartService.incAmount(id);
+    this.getCartProducts();
+  }
+  minusProduct(id: string) {
+    this.cartService.decAmount(id);
+    this.getCartProducts();
+  }
+  deleteProduct(id: string) {
+    this.cartService.delete(id);
+    this.getCartProducts();
   }
 }

@@ -15,6 +15,7 @@ import { ProductComponent } from './components/product/product.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { CartLabelComponent } from './components/cart-label/cart-label.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     ProductPageComponent,
     CartPageComponent,
     ProductComponent,
+    CartLabelComponent,
   ],
   imports: [
     BrowserModule,

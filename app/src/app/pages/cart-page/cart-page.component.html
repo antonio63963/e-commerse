@@ -8,28 +8,37 @@
       <th>Price</th>
       <th>Amount</th>
       <th>Summ</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let product of products; let idx = index">
-      <td>{{ idx + 1 }}</td>
+      <td>{{ idx + 1 }}.</td>
       <td><img class="smallPicCart" [src]="product.photo" /></td>
-      <td>{{ product.title }}</td>
-      <td>{{ product.price }}</td>
+      <td><strong>{{ product.title }}</strong></td>
+      <td>${{ product.price }}</td>
       <td>{{ product.amount }}</td>
-      <td>{{ product.summ }}</td>
+      <td>${{ product.summ }}</td>
+      <td>
+        <button class="action-btn" (click)="addProduct(product.id)">
+          <img src="assets/icons/add-circle-outline.svg" />
+        </button>
+        <button class="action-btn" (click)="minusProduct(product.id)">
+          <img src="assets/icons/remove-circle-outline.svg" />
+        </button>
+        <button class="action-btn" (click)="deleteProduct(product.id)">
+          <img src="assets/icons/trash-outline.svg" />
+        </button>
+      </td>
     </tr>
-    <button>Delete</button>
-    <button>Increase</button>
-    <button>Decrease</button>
+    <tr class="line"></tr>
     <tr>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
-      <td>{{totalSumm}}</td>
+      <td><strong>${{ totalSumm }}</strong></td>
     </tr>
   </tbody>
 </table>
-
