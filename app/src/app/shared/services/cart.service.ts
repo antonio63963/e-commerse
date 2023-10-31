@@ -9,7 +9,7 @@ export class CartService {
   count = 0;
 
   private getTotalCount(products: CartProduct[]) {
-    return products.reduce((acc, prod) => acc += prod.amount, 0);
+    return products.reduce((acc, prod) => (acc += prod.amount), 0);
   }
 
   getOrder(): CartProduct[] {
@@ -25,7 +25,6 @@ export class CartService {
 
   setOrder(order: CartProduct[]) {
     this.count = this.getTotalCount(order);
-    console.log(this.count);
     localStorage.setItem('order-cart', JSON.stringify(order));
   }
 
