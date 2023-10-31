@@ -1,0 +1,14 @@
+ul {
+  display: flex;
+  align-items: center;
+  .cart-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .cart-link>a {
+    margin-right: 0;
+
+  }
+}

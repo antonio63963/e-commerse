@@ -6,20 +6,22 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-
-  count$ = new BehaviorSubject(0);
+  count = 0;
 
   getOrder(): CartProduct[] {
     const data = localStorage.getItem('order-cart');
-    if(data?.length) {
-      this.count$.next(0);
-      return JSON.parse(data);
-    }else {
+    if (data) {
+      const parsedData = JSON.parse(data);
+      this.count = parsedData.length;
+      return parsedData;
+    } else {
       return [];
     }
   }
 
   setOrder(order: CartProduct[]) {
+    this.count = order.length;
+    console.log(this.count);
     localStorage.setItem('order-cart', JSON.stringify(order));
   }
 
@@ -33,12 +35,12 @@ export class CartService {
       if (isExisting) {
         isExisting.amount++;
         isExisting.summ += isExisting.price;
-      }else {
+      } else {
         existingOrder.push(newProduct);
       }
     } else {
       existingOrder.push(newProduct);
-      console.log(existingOrder)
+      console.log(existingOrder);
     }
     this.setOrder(existingOrder);
   }
@@ -71,10 +73,11 @@ export class CartService {
         existing.amount--;
         existing.summ = existing.amount * existing.price;
       } else {
-        existingOrder = existingOrder.filter(prod => prod.id != id);
+        existingOrder = existingOrder.filter((prod) => prod.id != id);
       }
       this.setOrder(existingOrder);
     } else {
+      this.count = 0;
       return;
     }
   }
@@ -88,6 +91,7 @@ export class CartService {
         (prod: { id: string }) => prod.id != id
       );
       if (!newArr.length) {
+        this.count = 0;
         localStorage.clear();
       } else {
         this.setOrder(newArr);

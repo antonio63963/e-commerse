@@ -5,12 +5,19 @@
       <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a routerLink="/">All</a>
       </li>
-      <li routerLinkActive="active"><a routerLink="/products/phones">Phones</a></li>
-      <li routerLinkActive="active"><a routerLink="/products/tablets">Tablet</a></li>
-      <li routerLinkActive="active"><a routerLink="/products/laptops">Laptop</a></li>
-      <li routerLinkActive="active"><a routerLink="/cart">Cart</a></li>
+      <li routerLinkActive="active">
+        <a routerLink="/products/phones">Phones</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/products/tablets">Tablet</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/products/laptops">Laptop</a>
+      </li>
+      <li routerLinkActive="active" class="cart-link">
+        <a routerLink="/cart">Cart</a><app-cart-label></app-cart-label>
+      </li>
     </ul>
-
   </nav>
 </header>
 <div class="container">
