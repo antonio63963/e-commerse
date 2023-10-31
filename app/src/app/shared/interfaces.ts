@@ -26,10 +26,20 @@ interface ImageInputEvent extends Event {
   target: any;
 }
 
+interface CartProduct {
+  id: string;
+  title: string;
+  price: number;
+  photo: string;
+  amount: number;
+  summ: number;
+}
+
 export {
   IProduct,
   FbAddResponse,
   IProductForm,
   ProductsTypes,
   ImageInputEvent,
+  CartProduct,
 };

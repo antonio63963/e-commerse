@@ -1,1 +1,35 @@
-<p>cart-page works!</p>
+<h1>Cart</h1>
+<table>
+  <thead class="thead">
+    <tr>
+      <th>#</th>
+      <th>Photo</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Summ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products; let idx = index">
+      <td>{{ idx + 1 }}</td>
+      <td><img class="smallPicCart" [src]="product.photo" /></td>
+      <td>{{ product.title }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.amount }}</td>
+      <td>{{ product.summ }}</td>
+    </tr>
+    <button>Delete</button>
+    <button>Increase</button>
+    <button>Decrease</button>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{totalSumm}}</td>
+    </tr>
+  </tbody>
+</table>
+

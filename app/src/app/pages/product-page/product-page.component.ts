@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { FireBaseService } from 'src/app/shared/services/fire-base.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class ProductPageComponent implements OnInit {
   product?: IProduct;
   prodSubscribe?: Subscription;
 
-  constructor(private route: ActivatedRoute, private fb: FireBaseService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FireBaseService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.prodSubscribe = this.route.params
@@ -26,5 +31,16 @@ export class ProductPageComponent implements OnInit {
 
   ngOnDestroy() {
     this.prodSubscribe?.unsubscribe();
+  }
+
+  addToCart() {
+    const { id, title, price, photo } = this.product!;
+    if(!id) return;
+    this.cartService.save({
+      id,
+      title,
+      price,
+      photo: photo[0] ?? '',
+    });
   }
 }
