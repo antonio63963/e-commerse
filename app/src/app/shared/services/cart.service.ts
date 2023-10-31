@@ -8,11 +8,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CartService {
   count = 0;
 
+  private getTotalCount(products: CartProduct[]) {
+    return products.reduce((acc, prod) => acc += prod.amount, 0);
+  }
+
   getOrder(): CartProduct[] {
     const data = localStorage.getItem('order-cart');
     if (data) {
       const parsedData = JSON.parse(data);
-      this.count = parsedData.length;
+      this.count = this.getTotalCount(parsedData);
       return parsedData;
     } else {
       return [];
@@ -20,7 +24,7 @@ export class CartService {
   }
 
   setOrder(order: CartProduct[]) {
-    this.count = order.length;
+    this.count = this.getTotalCount(order);
     console.log(this.count);
     localStorage.setItem('order-cart', JSON.stringify(order));
   }
