@@ -1,3 +1,9 @@
+interface User {
+  id?: string;
+  email: string;
+  password: string;
+}
+
 interface IProduct extends IProductForm {
   id?: string;
   dateCreated: Date;
@@ -36,6 +42,7 @@ interface CartProduct {
 }
 
 export {
+  User,
   IProduct,
   FbAddResponse,
   IProductForm,

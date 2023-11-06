@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { Observable, tap } from 'rxjs';
+import { Observable, from, tap } from 'rxjs';
+import { FireBaseService } from './services/fire-base.service';
+import { addDoc, collection } from 'firebase/firestore/lite';
 
 interface User {
   id?: string;
@@ -18,14 +20,21 @@ interface LoginResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fb: FireBaseService) {}
 
-  login(user: User): Observable<any> {
-    return this.http.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
-      user
-    ).pipe(tap(this.setToken));
+  login(user: User) {
+    if (!this.fb.db) this.fb.initDB();
+    return from(addDoc(collection(this.fb.db!, 'users'), user)).pipe(
+      tap(this.setToken)
+    );
   }
+
+  // login(user: User): Observable<any> {
+  //   return this.http.post(
+  //     `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
+  //     user
+  //   ).pipe(tap(this.setToken));
+  // }
 
   private setToken(response: any) {
     if (response) {

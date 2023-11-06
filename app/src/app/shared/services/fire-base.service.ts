@@ -12,8 +12,9 @@ import {
   where,
   getDoc,
   doc,
+  deleteDoc,
 } from 'firebase/firestore/lite';
-import { IProduct, ProductsTypes } from '../interfaces';
+import { IProduct, ProductsTypes, User } from '../interfaces';
 import { Observable, from, map, tap } from 'rxjs';
 
 @Injectable({
@@ -25,8 +26,6 @@ export class FireBaseService {
     const app = initializeApp(environment.firebaseConfig);
     this.db = getFirestore(app);
   }
-
-  constructor(private http: HttpClient) {}
 
   create(product: IProduct) {
     if (!this.db) this.initDB();
@@ -42,7 +41,7 @@ export class FireBaseService {
       map((snap) =>
         snap.docs.map((doc) => {
           return {
-            ...doc.data() as IProduct,
+            ...(doc.data() as IProduct),
             id: doc.id,
             dateCreated: new Date(doc.data()['dateCreated'].seconds * 1000),
           };
@@ -61,7 +60,7 @@ export class FireBaseService {
       map((snap) =>
         snap.docs.map((doc) => {
           return {
-            ...doc.data() as IProduct,
+            ...(doc.data() as IProduct),
             id: doc.id,
             dateCreated: new Date(doc.data()['dateCreated'].seconds * 1000),
           };
@@ -70,23 +69,30 @@ export class FireBaseService {
     );
   }
 
-  getProductById(id: string){
-    console.log('wow')
+  getProductById(id: string) {
+    console.log('wow');
     if (!this.db) this.initDB();
-    return from(getDoc(doc(this.db!, 'products', id))).pipe( map((snap) =>
-      {
-        console.log(snap.data())
+    return from(getDoc(doc(this.db!, 'products', id))).pipe(
+      map((snap) => {
+        console.log(snap.data());
         const data = snap.data();
-        if(data) {
+        if (data) {
           return {
-            ...data as IProduct,
+            ...(data as IProduct),
             id: snap.id,
-            dateCreated: new Date((data['dateCreated'].seconds as number) * 1000),
-          }
+            dateCreated: new Date(
+              (data['dateCreated'].seconds as number) * 1000
+            ),
+          };
         } else {
           return undefined;
         }
-      }
-  ));
+      })
+    );
+  }
+
+  deleteById(id: string) {
+    if(!this.db) this.initDB();
+    return  from(deleteDoc(doc(this.db!, 'products', id))).pipe(tap(res => console.log(res)))
   }
 }

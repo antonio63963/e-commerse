@@ -21,9 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.auth.isAuthenticated()) {
       req = req.clone({
         params: new HttpParams().set('auth', this.auth.token!),
-        // setParams: {
-        //   auth: this.auth.token as string
-        // }
       });
       console.log('token: ', this.auth.token, 'Request: ', req);
     }

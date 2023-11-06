@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces';
+import { FireBaseService } from 'src/app/shared/services/fire-base.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class DashboardPageComponent implements OnInit {
   prodSubscription?: Subscription;
   isLoaded = false;
 
-  constructor(private productServise: ProductService) {}
+  constructor(private productServise: FireBaseService) {}
 
   ngOnInit(): void {
     this.prodSubscription = this.productServise.getAll().subscribe((resp) => {
